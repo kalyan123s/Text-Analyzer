@@ -14,16 +14,16 @@ export default function TextForm(props) {
     setText(newtexts.join(" "));
   };
 
-  // const handleExtractEmail = () => {
-  //   let ListOfMail= /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g; 
-  //   let x=texts.match(ListOfMail);
-  //     if(x===null){
-  //       console.log("No any Email address found!")
-  //     }
-  //     else{
-  //       setText(x);
-  //     }
-  // };
+  const handleExtractEmail = () => {
+    let ListOfMail= /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g; 
+    let x=texts.match(ListOfMail);
+      if(x===null){
+        console.log("No any Email address found!")
+      }
+      else{
+        setText(x);
+      }
+  };
 
   const handleClickClear = () => {
     let newtexts = "";
