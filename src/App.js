@@ -9,7 +9,6 @@ import Alert from "./components/Alert";
 
 function App() {
   const [mode, setMode]=useState('light')
-  const [texts,SetText]=useState('Light Mode')
   const [alert, setAlert]=useState(null)
 
   const ShowAlert=(message,type)=>{
@@ -21,15 +20,6 @@ function App() {
       setAlert(null)
     },2000)
   }
-  const handleDarkModeTexts=()=>{
-    if(texts==='Dark Mode'){
-      SetText('Light Mode');
-    }
-    else{
-      SetText('Dark Mode');
-    }
-  }
-
   const handleDarkMode=()=>{
     if(mode==='dark'){
       setMode('light');
@@ -46,7 +36,7 @@ function App() {
   }
   return (
     <>
-      <Navbar title="Texts Analyzer" aboutText="About" mode={mode}  texts={handleDarkModeTexts} toggleDark={handleDarkMode}/>
+      <Navbar title="Texts Analyzer" aboutText="About" mode={mode}  toggleDark={handleDarkMode}/>
       {/* <Navbar /> */}
       <Alert alert={alert}/>
       <TextForm heading="Enter Texts to Analyze." enteredTexts="" mode={mode}/>

@@ -13,6 +13,18 @@ export default function TextForm(props) {
     let newtexts = texts.split(/[ ]+/);
     setText(newtexts.join(" "));
   };
+
+  // const handleExtractEmail = () => {
+  //   let ListOfMail= /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g; 
+  //   let x=texts.match(ListOfMail);
+  //     if(x===null){
+  //       console.log("No any Email address found!")
+  //     }
+  //     else{
+  //       setText(x);
+  //     }
+  // };
+
   const handleClickClear = () => {
     let newtexts = "";
     setText(newtexts);
@@ -59,6 +71,9 @@ export default function TextForm(props) {
   const handleCopy = () => {
     navigator.clipboard.writeText(texts);
     setBtnText("Copied!")
+    setTimeout(()=>{
+      setBtnText("Copy")
+    },700)
   };
   const handleOnChange = (event) => {
     setText(event.target.value);
@@ -68,21 +83,24 @@ export default function TextForm(props) {
   //   setText("new texts") //correct way to change the texts
   return (
     <div className="container my-2 mx-3">
-      <h1>{props.heading}</h1>
+      <h2>{props.heading}</h2>
       <div>
         <textarea value={texts} onChange={handleOnChange} style={{backgroundColor:props.mode==='light'?'white':'grey', color:props.mode==='light'?'black':'white'}} className="form-control" id="myBox" rows="8" ></textarea>
       </div>
-      <div className="container-fluid d-flex mt-3">
-        <button className="mx-2 btn btn-primary" onClick={handleClickUppercase}>
+      <div className="container mt-3">
+        <button className="  mx-2 my-1 btn btn-primary" onClick={handleClickUppercase}>
           Convert to Uppercase
         </button>
-        <button className="mx-2 btn btn-primary" onClick={handleClickLowercase}>
+        <button className="  mx-2 my-1 btn btn-primary" onClick={handleClickLowercase}>
           Convert to Lowercase
         </button>
-        <button className="mx-2 btn btn-primary" onClick={handleExtraSpaces}>
-          Remove extra Spaces
+        <button className="  mx-2 my-1 btn btn-primary" onClick={handleExtraSpaces}>
+          Remove Extra Space(s)
         </button>
-        <button className=" btn btn-primary" onClick={handleClickClear}>
+        <button className=" mx-2 my-1 btn btn-primary" onClick={handleExtractEmail}>
+          Extract Email(s)
+        </button>
+        <button className=" ml-2 my-1  btn btn-primary" onClick={handleClickClear}>
           Clear Texts
         </button>
       </div>
@@ -112,16 +130,8 @@ export default function TextForm(props) {
             <h2>Preview</h2>
           </div>
           <div>
-            <button className="btn btn-primary" onClick={handleCopy}>
-              {Copybtntext}
-            </button>
-            <button
-              type="submit"
-              className="mx-2 btn btn-primary"
-              onClick={handleDownload}
-            >
-              Download
-            </button>
+            <button className="btn btn-primary" onClick={handleCopy}> {Copybtntext} </button> 
+            <button type="submit" className="mx-2 btn btn-primary" onClick={handleDownload} > Download </button>
           </div>
         </div>
         <div className={` border border-1 border-${props.mode==='light'?'dark':'#F3E5AB'} pt-1 p-3  mx-20`}>
@@ -130,4 +140,4 @@ export default function TextForm(props) {
       </div>
     </div>
   );
-}
+ }      
